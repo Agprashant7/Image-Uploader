@@ -1,4 +1,4 @@
-import react from 'react'
+
 import './progressBar.css';
 
 const ProgressBar=({progressValue=10})=>{
