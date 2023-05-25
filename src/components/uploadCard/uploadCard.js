@@ -20,7 +20,7 @@ const UploadCard=()=>{
         let formData = new FormData();
         formData.append('file', file);
 
-        await axios.post("http://localhost:3001/upload-single-file", formData,{
+        await axios.post("https://imageserver-kzgz.onrender.com/upload-single-file", formData,{
             onUploadProgress: progressEvent => {
                 const percentCompleted = Math.round(
                   (progressEvent.loaded * 100) / progressEvent.total
