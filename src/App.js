@@ -1,6 +1,6 @@
 
 import './App.css';
-import UploadCard from './components/uploadCard';
+import UploadCard from './components/uploadCard/uploadCard';
 
 function App() {
   return (
