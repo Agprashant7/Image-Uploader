@@ -31,7 +31,7 @@ export function ClipboardCopy({ copyText }) {
 
   
     return (
-      <div className="container" >
+      <div className="clipboardContainer" >
         <input className='copyContainer' type="text" value={copyText} readOnly />
         <div style={{backgroundColor:'blue'}}>
         <button className="copyButton" onClick={handleCopyClick}>

@@ -12,11 +12,40 @@ const UploadCard=()=>{
     const [error,setError]=useState()
     const [success,setSuccess]=useState(false)
     const [progressValue,SetProgressValue]=useState()
-  async function onSelectFile(evt){
-        // console.log("selected item",evt.target.files[0])
+    const drop = React.useRef(null);
+    React.useEffect(() => {
+        drop.current.addEventListener('dragover', handleDragOver);
+        drop.current.addEventListener('drop', handleDrop);
+      
+        return () => {
+          drop.current.removeEventListener('dragover', handleDragOver);
+          drop.current.removeEventListener('drop', handleDrop);
+        };
+      }, []);
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
+    
+    const handleDrop = (e) => {
+     
+        e.preventDefault();
+        e.stopPropagation();
+        const {files} = e.dataTransfer;
+        if((files[0].type!=='image/png'&& files[0].type!=='image/jpg' && !files[0].type!=='image/jpeg')){
+        alert('Jpeg and Png format only supported')
+        return
+        }
+        if (files && files.length) {
+            onSelectFile('',files);
+        }
+          
+    };
+  async function onSelectFile(event,fileName){
+        let file=fileName && fileName[0] !== undefined ? fileName[0]:event.target.files[0];
         SetProgress(true)
-        let file=evt.target.files[0];
-       
+        console.log('file',file)
         let formData = new FormData();
         formData.append('file', file);
 
@@ -34,7 +63,7 @@ const UploadCard=()=>{
 
                 console.log("After post",res.data)
                 setSelected(res.data)
-                SetProgress(false)
+                 SetProgress(false)
                 setSuccess(true)
             })
             .catch((err)=>{
@@ -59,7 +88,9 @@ return(
     {!progress?
         <div className='main'>
             {success?<SuccessHeader/>:<Header/>}
-            <div className={selectedImage===Image?'imageCard':''} draggable='true' onDrag={()=>{console.log('logging')}}>
+            <div className={selectedImage===Image?'imageCard':''}
+              ref={drop}
+             draggable='true' onDrag={()=>{console.log('logging')}}>
             <img  src={selectedImage} alt='nature' className={selectedImage===Image?'image':'expandImage'}/>
             </div>
             
@@ -69,7 +100,7 @@ return(
             <ClipboardCopy copyText={selectedImage}/>:
             <>
             <p>Or</p>
-            <input  type='file' label='Choose File' onInput={(e)=>{onSelectFile(e)}}  />
+            <input  type='file' label='Choose File' onInput={(e)=>{onSelectFile(e)}}   />
             </>
                 
             }

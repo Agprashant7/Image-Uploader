@@ -4,7 +4,10 @@ import './progressBar.css';
 const ProgressBar=({progressValue=5})=>{
     return(
         <div className='container'>
-            <h2>Uploading....</h2>
+            <div>
+            <h4>Uploading....</h4>
+            </div>
+          
         <div className='outerBar' >
             <div className='innerBar'style={{width:progressValue+'%'}}>
 
