@@ -33,12 +33,12 @@
     border-radius: 10px;
 }
 .btn{
-    width: 101px;
+    /* width: 101px;
     height: 31.98px;
     background: #2F80ED;
     border-radius: 8px;
     border:0px;
-    text-align: center;
+    text-align: center; */
 }
 
 ::-webkit-file-upload-button {

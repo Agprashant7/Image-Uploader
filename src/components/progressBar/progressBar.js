@@ -6,6 +6,7 @@ const ProgressBar=({progressValue=5})=>{
         <div className='container'>
             <div>
             <h4>Uploading....</h4>
+            <p>For time being we are using free hoisting service,this might take some time</p>
             </div>
           
         <div className='outerBar' >

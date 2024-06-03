@@ -33,7 +33,7 @@ export function ClipboardCopy({ copyText }) {
     return (
       <div className="clipboardContainer" >
         <input className='copyContainer' type="text" value={copyText} readOnly />
-        <div style={{backgroundColor:'blue'}}>
+        <div >
         <button className="copyButton" onClick={handleCopyClick}>
          <span>{isCopied ? 'Copied!' : 'Copy Link'}</span>
         </button>
