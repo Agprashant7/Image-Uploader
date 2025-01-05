@@ -1,11 +1,21 @@
+import "./App.css";
 
-import './App.css';
-import UploadCard from './components/uploadCard/uploadCard';
+import Header from "./components/header/header.js";
+import UploadCard from "./components/uploadCard/uploadCard";
 
 function App() {
   return (
     <div className="App">
-     <UploadCard />
+     <Header/>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <UploadCard />
+      </div>
     </div>
   );
 }
