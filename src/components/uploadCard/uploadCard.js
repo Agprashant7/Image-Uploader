@@ -47,18 +47,24 @@ const UploadCard=()=>{
         SetProgress(true)
         console.log('file',file)
         let formData = new FormData();
-        formData.append('file', file);
-
-        await axios.post(`https://imageserver-kzgz.onrender.com/upload-single-file`, formData,{
-            onUploadProgress: progressEvent => {
+        formData.append("file", file);
+        let url=`${process.env.REACT_APP_BACKEND_URL}/upload-single-file`
+        console.log(process.env.REACT_APP_BACKEND_URL)
+        await axios
+          .post(
+            url,
+            formData,
+            {
+              onUploadProgress: (progressEvent) => {
                 const percentCompleted = Math.round(
                   (progressEvent.loaded * 100) / progressEvent.total
                 );
-                
-                SetProgressValue(percentCompleted-10)
+    
+                SetProgressValue(percentCompleted - 10);
                 console.log(`upload process: ${percentCompleted}%`);
-              }
-        })
+              },
+            }
+          )
             .then(res => {
 
                 console.log("After post",res.data)
